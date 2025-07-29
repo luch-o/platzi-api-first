@@ -7,6 +7,15 @@ info:
 servers:
   - url: http://localhost:8000
 
+components:
+  schemas:
+    HelloResponse:
+      type: object
+      properties:
+        message:
+          type: string
+          example: Hello World
+
 paths:
   /hello:
     get:
@@ -18,8 +27,4 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-                    example: Hello World
+                $ref: '#/components/schemas/HelloResponse'

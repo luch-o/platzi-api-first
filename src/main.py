@@ -1,6 +1,7 @@
 from fastapi import FastAPI
 import yaml
 from pathlib import Path
+from src.schemas import HelloResponse
 
 app = FastAPI()
 
@@ -13,5 +14,5 @@ def load_openapi_schema():
 app.openapi_schema = load_openapi_schema()
 
 @app.get("/hello")
-def hello():
+def hello() -> HelloResponse:
     return {"message": "Hello World"}
