@@ -71,7 +71,7 @@ def get_all_products() -> list[ProductResponse]:
     return product_service.get_all_products()
 
 
-@app.post("/products")
+@app.post("/products", status_code=status.HTTP_201_CREATED)
 def create_product(product: ProductPayload) -> ProductResponse:
     product = Product.model_validate(product.model_dump())
     return product_service.create_product(product)
@@ -94,7 +94,7 @@ def update_product(id: int, product: ProductPayload) -> ProductResponse:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=str(e)) from e
 
 
-@app.delete("/products/{id}")
+@app.delete("/products/{id}", status_code=status.HTTP_204_NO_CONTENT)
 def delete_product(id: int):
     try:
         product_service.delete_product(id)
