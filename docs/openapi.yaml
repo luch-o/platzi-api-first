@@ -21,43 +21,38 @@ components:
         message:
           type: string
           example: Error message
+    UserPayload:
+      $ref: '#/x-internal-schemas/UserBase'
     User:
-      type: object
-      required:
-        - name
-        - email
-        - age
-      properties:
-        name:
-          type: string
-          example: John Doe
-          minLength: 2
-        email:
-          type: string
-          format: email
-          example: john.doe@example.com
-        age:
-          type: integer
-          example: 30
-          minimum: 18
-    UserResponse:
-      type: object
-      required:
-        - name
-        - email
-        - age
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-          example: John Doe
-        email:
-          type: string
-          format: email
-        age:
-          type: integer
-          example: 30
+      allOf:
+        - $ref: '#/x-internal-schemas/UserBase'
+        - type: object
+          properties:
+            id:
+              type: integer
+              example: 1
+    
+# Internal schemas are used to avoid duplication of schemas and are not shown in the UI
+x-internal-schemas:
+  UserBase:
+    type: object
+    required:
+      - name
+      - email
+      - age
+    properties:
+      name:
+        type: string
+        example: John Doe
+        minLength: 2
+      email:
+        type: string
+        format: email
+        example: john.doe@example.com
+      age:
+        type: integer
+        example: 30
+        minimum: 18
 
 paths:
   /hello:
@@ -81,14 +76,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/UserPayload'
       responses:
         '201':
           description: User created successfully
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                $ref: '#/components/schemas/User'
         '400':
           description: Invalid request body
           content:
@@ -112,7 +107,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                $ref: '#/components/schemas/User'
         '404':
           description: User not found
           content:
@@ -133,14 +128,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/User'
+              $ref: '#/components/schemas/UserPayload'
       responses:
         '200':
           description: User updated successfully
           content: 
             application/json:
               schema:
-                $ref: '#/components/schemas/UserResponse'
+                $ref: '#/components/schemas/User'
         '404':
           description: User not found
           content:
