@@ -34,7 +34,7 @@ class ProductPayload(BaseModel):
     description: Optional[str] = None
     tags: Optional[list[str]] = Field(None, min_length=1)
     stock: Optional[bool] = None
-    additional_properties: Optional[Dict[str, Any]] = None
+    specifications: Optional[Dict[str, Any]] = None
     ratings: Optional[list[RatingSchema]] = None
 
 
