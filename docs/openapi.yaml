@@ -20,7 +20,7 @@ components:
       properties:
         message:
           type: string
-          example: Error message
+          example: Validation failed: Email address is required and must be valid
     UserPayload:
       $ref: '#/x-internal-schemas/UserBase'
     User:
@@ -30,7 +30,7 @@ components:
           properties:
             id:
               type: integer
-              example: 1
+              example: 12847
     ProductPayload:
       $ref: '#/x-internal-schemas/ProductBase'
     Product:
@@ -40,7 +40,7 @@ components:
           properties:
             id:
               type: integer
-              example: 1
+              example: 5429
 # Internal schemas are used to avoid duplication of schemas and are not shown in the UI
 x-internal-schemas:
   UserBase:
@@ -52,15 +52,15 @@ x-internal-schemas:
     properties:
       name:
         type: string
-        example: John Doe
+        example: Sarah Martinez
         minLength: 2
       email:
         type: string
         format: email
-        example: john.doe@example.com
+        example: sarah.martinez@techcorp.com
       age:
         type: integer
-        example: 30
+        example: 28
         minimum: 18
   ProductBase:
     type: object
@@ -71,10 +71,10 @@ x-internal-schemas:
     properties:
       name:
         type: string
-        example: Product 1
+        example: Apple MacBook Pro 14-inch M3
       price:
         type: number
-        example: 100
+        example: 1999.99
       category:
         type: string
         enum:
@@ -85,19 +85,26 @@ x-internal-schemas:
           - Other
       description:
         type: string
-        example: This is a product description
+        example: Professional laptop with M3 chip, 16GB RAM, 512GB SSD. Perfect for developers, designers, and content creators. Features stunning Liquid Retina XDR display.
       tags:
         type: array
         minItems: 1
         items:
           type: string
-          example: Electronics
+          example: laptop
       stock:
         type: boolean
         example: true
-      additionalProperties:
+      specifications:
         type: object
-        description: Additional properties, for custom additional information
+        description: Specifications of the product
+        example:
+          brand: Apple
+          model: MacBook Pro 14-inch M3
+          processor: M3
+          memory: 16GB
+          storage: 512GB
+          display: Liquid Retina XDR
       ratings:
         type: array
         items:
@@ -105,12 +112,12 @@ x-internal-schemas:
           properties:
             score:
               type: number
-              example: 4.5
+              example: 4.8
               minimum: 0
               maximum: 5
             comment:
               type: string
-              example: This is a comment
+              example: Outstanding performance and build quality. The M3 chip handles everything I throw at it effortlessly. Battery life is incredible!
               minLength: 10
               maxLength: 200
 
