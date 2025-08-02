@@ -131,6 +131,8 @@ paths:
     post:
       summary: Create a new user
       description: Creates a new user with the given information
+      tags:
+        - Users
       requestBody:
         required: true
         content:
@@ -155,6 +157,8 @@ paths:
     get:
       summary: Get a user by ID
       description: Returns a user by their ID
+      tags:
+        - Users
       parameters:
         - name: id
           in: path
@@ -177,6 +181,8 @@ paths:
     patch:
       summary: Update a user by ID
       description: Updates a user by their ID
+      tags:
+        - Users
       parameters:
         - name: id
           in: path
@@ -207,6 +213,8 @@ paths:
     get:
       summary: Get all products
       description: Returns a list of all products
+      tags:
+        - Products
       responses:
         '200':
           description: List of products
@@ -219,6 +227,8 @@ paths:
     post:
       summary: Create a new product
       description: Creates a new product with the given information
+      tags:
+        - Products
       requestBody:
         required: true
         content:
@@ -243,6 +253,8 @@ paths:
     get:
       summary: Get a product by ID
       description: Returns a product by its ID
+      tags:
+        - Products
       parameters:
         - name: id
           in: path
@@ -265,6 +277,8 @@ paths:
     patch:
       summary: Update a product by ID
       description: Updates a product by its ID
+      tags:
+        - Products
       parameters:
         - name: id
           in: path
@@ -299,6 +313,8 @@ paths:
     delete:
       summary: Delete a product by ID
       description: Deletes a product by its ID
+      tags:
+        - Products
       parameters:
         - name: id
           in: path
