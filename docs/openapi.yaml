@@ -31,7 +31,16 @@ components:
             id:
               type: integer
               example: 1
-    
+    ProductPayload:
+      $ref: '#/x-internal-schemas/ProductBase'
+    Product:
+      allOf:
+        - $ref: '#/x-internal-schemas/ProductBase'
+        - type: object
+          properties:
+            id:
+              type: integer
+              example: 1
 # Internal schemas are used to avoid duplication of schemas and are not shown in the UI
 x-internal-schemas:
   UserBase:
@@ -53,6 +62,57 @@ x-internal-schemas:
         type: integer
         example: 30
         minimum: 18
+  ProductBase:
+    type: object
+    required:
+      - name
+      - price
+      - category
+    properties:
+      name:
+        type: string
+        example: Product 1
+      price:
+        type: number
+        example: 100
+      category:
+        type: string
+        enum:
+          - Electronics
+          - Clothing
+          - Books
+          - Food
+          - Other
+      description:
+        type: string
+        example: This is a product description
+      tags:
+        type: array
+        minItems: 1
+        items:
+          type: string
+          example: Electronics
+      stock:
+        type: boolean
+        example: true
+      additionalProperties:
+        type: object
+        description: Additional properties, for custom additional information
+      ratings:
+        type: array
+        items:
+          type: object
+          properties:
+            score:
+              type: number
+              example: 4.5
+              minimum: 0
+              maximum: 5
+            comment:
+              type: string
+              example: This is a comment
+              minLength: 10
+              maxLength: 200
 
 paths:
   /hello:
